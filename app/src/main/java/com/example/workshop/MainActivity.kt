@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -45,9 +47,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            WorkshopTheme {
+
                    AboutMe()
-                }
+
             }
         }
     }
@@ -59,9 +61,11 @@ fun AboutMe() {
     LazyColumn(  // Allows the content to be  scrollable
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.LightGray)
+            .background(Color.LightGray) //Change background color
             .padding(16.dp),
-    ){
+            //horizontalAlignment = Alignment.CenterHorizontally,    //Remove comment to center all the items if you want
+            //verticalArrangement = Arrangement.Center, // Centers the children vertically.
+        ){
 
         item { Title() }
         item { ProfilePic() }
@@ -78,14 +82,15 @@ fun Title() {
         Text(
             text = "Example",
             style = TextStyle(
+                //Choose your own style
                 color = Color.White, // Text color
                 fontSize = 20.sp, // Text size
                 fontWeight = FontWeight.SemiBold, // Font weight
-                textAlign = TextAlign.Center // Text alignment
+                //textAlign = TextAlign.Center // Text alignment
 
             )
         )
-    Spacer(modifier = Modifier.height(16.dp))  // adjust spacing
+         Spacer(modifier = Modifier.height(16.dp))  // adjust spacing
 }
 @Composable
 fun ProfilePic() {
@@ -108,21 +113,34 @@ fun ProfilePic() {
 fun SelfDescription() {
 
     Text(
-        text ="Talk about yourself here"
-    ) // Add in your own text about you
+        text ="Talk about yourself here." + "\n" + "See code on how to line break.",
+
+        style = TextStyle(
+            //Add your own modifiers
+        )
+    )
+
+    Spacer(modifier = Modifier.height(60.dp))  // adjust spacing
 }
 
 @Composable
 fun YourButton() {
-    val showCard = remember { mutableStateOf(false) }
+    val showCard = remember { mutableStateOf(false) } // Keeps the card hidden till button is clicked on
 
     Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier = Modifier
+            .fillMaxSize(),
+            contentAlignment = Alignment.Center,
+
     ) {
         Button(
-            onClick = { showCard.value = !showCard.value })
-        {
+            onClick = { showCard.value = !showCard.value },
+                    colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Blue, // This changes the background color of the button
+                    contentColor = Color.White // This is for the text or icon color inside the button
+        ),
+                    modifier = Modifier
+        ) {
 
             Text("Toggle Card")
         }
@@ -134,29 +152,52 @@ fun YourButton() {
     }
 }
 
-    @Composable
-    fun YourCard(onClose: () -> Unit) {
-        Card(
+@Composable
+fun YourCard(onClose: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .padding(16.dp),
+        shape = RoundedCornerShape(30.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.Cyan),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
+                .fillMaxSize()
                 .padding(16.dp),
-            shape = RoundedCornerShape(30.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.Cyan),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+           //verticalArrangement = Arrangement.Center, // Centers the children vertically.
+            horizontalAlignment = Alignment.CenterHorizontally // Centers the children horizontally.
         ) {
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
-                Text(text = "Card Title")
-                Text(text = "Card Content")
-                Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Card Title",
+                style = TextStyle(
+                        // Add your own style
+                )
+            )
 
-                Button(
-                    onClick = onClose
-                ) {
-                    Text("Close")
-                }
+            Text(
+                text = "Card Content",
+                style = TextStyle(
+                    // Add your own style
+                )
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Button(
+                onClick = onClose,
+                colors = ButtonDefaults.buttonColors(
+
+                    // Change colors
+                    containerColor = Color.Blue,
+                    contentColor = Color.White
+                ),
+                modifier = Modifier
+            ) {
+                Text("Close")
             }
         }
     }
+}
