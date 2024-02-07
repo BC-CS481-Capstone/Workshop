@@ -4,6 +4,8 @@
 
 # Instructions
 
+[PDF Form](WorkshopInstructions.pdf)
+
 ## 1. Project Structure
 
 ![](assets/projectstructure.png)
