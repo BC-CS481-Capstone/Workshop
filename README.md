@@ -1,23 +1,33 @@
 # Workshop
 
-# Preparation
+[Requirements](WorkshopRequirements.pdf)
 
 # Instructions
 
 ## 1. Project Structure
 
+![](assets/projectstructure.png)
+
 ### Step 1
 Make sure Project View is open using the drop-down menu: `View >> Tool >> Windows >> Project` or `Alt+1` shortcut on Windows.
+
+![](assets/toolwindows.png)
 
 ### Step 2
 Make sure you are using Android format in Project View by using the drop-down
 menu: Android
 
+![](assets/androidmenu.png)
+
 ### Step 3
 Expand folders to view MainActivity.kt by expanding the “app” folder and then
 expanding the “com.example.workshop” package.
 
+![](assets/comexampleworkshop.png)
+
 ## 2. Review `MainActivity.kt`
+
+![](assets/mainactivity.png)
 
 ### Step 1
 Open the MainActivity.kt file from the Project View
@@ -42,10 +52,16 @@ The `YourCard` function is filled with content that needs to be rendered. We wil
 ### Step 3
 Make sure the split view is selected to see the preview.
 
+![](assets/splitview.png)
+
 ### Step 4
 Make sure your code compiles and you can view the preview. If you don’t see the preview, follow the prompt in the middle of the preview window.
 
+![](assets/demo.png)
+
 ### 3. Edit Profile Title
+
+![](assets/edittitle.png)
 
 ### Step 1
 In the Title function replace the “Example” text with your name.
@@ -63,6 +79,8 @@ Change the font size so your name fills half the width of the screen.
 Remove the // commit and set your text to the center of the screen.
 
 ## 4. Edit Profile Description
+
+![](assets/editdescription.png)
 
 ### Step 1
 In the `SelfDescription` function replace the Text string with a description about
@@ -89,10 +107,32 @@ Set the font alignment
 ### Challenge
 Change the font direction.
 
-## 5. Emulate!
+## 5. Edit Profile Image
 
 ### Step 1
-Make sure your Device Manager is open by using the drop-down menu: `View >> Tool
+Make sure the Resource Manager is open by using the drop-down menu: `View >> Tool
+Windows >> Resource Manager`
+
+![](assets/resourcemanager1.png)
+
+![](assets/resourcemanager2.png)
+
+### Setp 2
+Download a photo of yourself. If you don’t want to use your picture, download an animal that looks like you. 
+
+### Step 3
+Add your photo the the project by using, in the Resource Manager, the `+` button drop-down menu: `+ >> Import Drawables`. Find your picture in your file system, select it, and hit `OK`.
+
+### Step 4
+Replace `id` of the `paintedResource` with your the id of your photo resource. Right-click and copy the id from the Resource Manager or drag the icon from the Resource Manager into your code.
+
+### Step 5
+Set the content scale for the image to fit. Select and hover over the Image function to get the parameter name you need. 
+
+## 6. Emulate!
+
+### Step 1
+Make sure the Device Manager is open by using the drop-down menu: `View >> Tool
 Windows >> Device Manager`
 
 ### Step 2
@@ -108,23 +148,41 @@ Build your project using the drop-down menu: `Build >> Make Project` or the `Ctr
 Run your application on the device by using the drop-down menu: `Run >> Run ‘app’`.
 `Shift+F10` shortcut on Windows.
 
-## 6. Edit Profile Card
+## 7. Edit Profile Card
 
 ### Step 1
-Change the Card Title to “Button Card”.
+Change the card's text parameter to “Button Card”.
 
 ### Step 2
 Remove the Text function that holds the Card Content. We will replace it with our
 new content.
 
 ### Step 3
-Add a Row function to replace the content.
+Add a `Row` function to replace the content.
 
-### Step 4
-Import the Row function by selecting and hovering over Row. Then, import the Composable Row function.
+You can import the Row function by selecting and hovering over Row and clicking import on the menu that pops up.
 
 ### Step 5 
-Add 3 buttons to the Row content as shown
+Add 3 buttons to the Row content as shown:
+```
+Row {
+    Button(
+        onClick = {}
+    ) {
+        Text("Left")
+    }
+    Button(
+        onClick = {}
+    ) {
+        Text("Middle")
+    }
+    Button(
+        onClick = {}
+    ) {
+        Text("Right")
+    }
+}
+```
 
 ### Step 6
 Emulate your new buttons by using the drop-down menu: `Run >> Run ‘app’`
@@ -142,6 +200,14 @@ the `LocalContext` property.
 Add a toast to your buttons. Use the line of code shown.
 
 Add the Toast to the empty `onClick` body for each button. Rename the text to the actual button name.
+
+```
+Button(
+    onClick = { Toast.makeText(context, "Left", Toast.LENGTH_SHORT).show() }
+) {
+    Text("Middle")
+}
+```
 
 ### Step 9
 Run your app and test your button.
